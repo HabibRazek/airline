@@ -1,0 +1,147 @@
+<!--
+
+<body>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <a class="navbar-brand" href="#">toutou airline</a>
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a  *ngIf="authService.isAdmin()" class="nav-link" routerLink="/dashboard">Home</a>
+            </li>
+
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                    Airlines
+                </a>
+                <div class="dropdown-menu">
+                    <a  *ngIf="authService.isAdmin()" class="dropdown-item" routerLink="/add-airlines">Add</a>
+                    <a class="dropdown-item" routerLink="/airlines">List</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                    Flights
+                </a>
+                <div class="dropdown-menu">
+                    <a  *ngIf="authService.isAdmin()" class="dropdown-item" routerLink="/add-flights">Add</a>
+                    <a class="dropdown-item" routerLink="/flights">List</a>
+                    <a class="dropdown-item" routerLink="/rechercheParDestination">Search for a flight</a>
+
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                    tickets
+                </a>
+                <div class="dropdown-menu">
+                    <a  *ngIf="authService.isAdmin()" class="dropdown-item" routerLink="/add-tickets">book</a>
+                    <a  *ngIf="authService.isAdmin()" class="dropdown-item" routerLink="/add-ticketavailable">Add ticket available</a>
+
+                    <a class="dropdown-item" routerLink="/ticketavailable">List available</a>
+                    <a  *ngIf="authService.isAdmin()"class="dropdown-item" routerLink="/tickets">List tickets non available</a>
+
+
+                </div>
+            </li>
+        </ul>
+
+    <ul  style="margin-right: 40px;" class="navbar-nav ml-auto">
+
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                {{authService.loggedUser}}
+            </a>
+            <div class="dropdown-menu" >
+                <a *ngIf="!authService.isloggedIn" class="dropdown-item" routerLink = "login">Se connecter</a>
+                <a *ngIf="authService.isloggedIn"  class="dropdown-item" (click)="onLogout()" >Se déconnecter</a>
+                <a class="dropdown-item" href="#">Mon Profile</a>
+            </div>
+        </li>
+    </ul>
+    </nav>
+    <router-outlet></router-outlet>
+    </body> -->
+
+<link
+  href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
+  rel="stylesheet"
+/>
+<div id="wrapper" class="wrapper-content">
+  <div id="sidebar-wrapper" class="bg-dark">
+    <ul class="sidebar-nav">
+      <li class="sidebar-brand">
+        <a href="#" class="text-light">
+          <img
+            src="https://img.icons8.com/color/48/null/airplane-front-view.png"
+          />
+          <b> Airline </b>
+        </a>
+      </li>
+      <br>
+      <li class="nav-item">
+        <a
+          class=""
+          >{{authService.loggedUser}}</a
+        >
+      </li>
+      <li class="nav-item">
+        <a
+          *ngIf="authService.isAdmin()"
+          class="dropdown-item"
+          routerLink="/dashboard"
+          >Static</a
+        >
+      </li>
+      <li class="nav-item">
+        <a
+          *ngIf="authService.isAdmin()"
+          class="dropdown-item"
+          routerLink="/passengers"
+          >Passengers</a
+        >
+      </li>
+      <li class="nav-item">
+        <a
+          *ngIf="authService.isAdmin() || authService.isUser()"
+          class="dropdown-item"
+          routerLink="/flights"
+          >Flights</a
+        >
+      </li>
+
+      <li class="nav-item">
+        <a
+          *ngIf="authService.isAdmin()"
+          class="dropdown-item"
+          routerLink="/airlines"
+          >Airlines</a
+        >
+      </li>
+
+
+      <li class="nav-item">
+        <a
+          *ngIf="authService.isAdmin()"
+          class="dropdown-item"
+          routerLink="/tickets"
+          >Tickets</a
+        >
+      </li>
+      <hr>
+      <li class="">
+        <a *ngIf="authService.isloggedIn"  class="dropdown-item" (click)="onLogout()" ><img src="https://img.icons8.com/fluency/35/null/exit-sign.png"/>  Logout</a>
+      </li>
+
+    </ul>
+  </div>
+
+  <div id="page-content-wrapper">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-12">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

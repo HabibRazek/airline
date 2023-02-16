@@ -1,0 +1,106 @@
+<div class="container">
+  <div class="card shadow mb-4">
+    <div class="card-body">
+      <div><a routerLink="/add-airlines">
+        <img src="https://img.icons8.com/fluency/48/000000/plus-2-math.png" />
+      </a></div>
+      <form class="form-inline">
+        <div class="form-group">
+          <label for="1"><b>Search Airlines :</b></label>
+          <input
+            id="1"
+            class="form-control mx-sm-4 mb-2 mt-2 w-25"
+            #searchTerm
+            (keyup)="onKeyUp(searchTerm.value)"
+          />
+        </div>
+      </form>
+      <table class="table table-striped">
+        <tr>
+          <th>Id</th>
+          <th>Name</th>
+          <th>number</th>
+        </tr>
+        <tbody *ngFor="let airline of airlines">
+          <tr>
+            <td>{{ airline.idAirline }}</td>
+            <td>{{ airline.nameAirline }}</td>
+            <td>{{ airline.numberofPlanesAirline }}</td>
+
+            <td>
+              <a
+                *ngIf="authService.isAdmin()"
+                [routerLink]="['/updateairline', airline.idAirline]"
+                ><img
+                  height="38px"
+                  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAACXBIWXMAAAsTAAALEwEAmpwYAAAEQ0lEQVR4nO2abWgURwCGJ/FuZ26Nph9Q2h/S4FdBqFAuuZlc0x5Wg/GHtjWe2ETJ3cx6NbEllDY0LajVUAnBUltU1FIVKUJMQVEs+MMWSkEIGFL6q2laCkFi0kI/oNCWJlPmkr3bi7lc3Ju9zIZ54YXl7uZm3md3ZmdnFgAtLS0tLS0t/+lQOSK0GRF6C2I2LiyOxWfiO7CotX73UoTpdUQYn930Boi1VYBFG57Qr+ywcGM7D7KTaYvjzOeEfr34IKzPDW/s6uZln/3MwefjaYtj45Ue59VwE8TjS+Q2IpwyIW6pgtXJlfMxCKcqPQnf2MVB72gmfMa9o9xoykKAEWt/8ZVH6TJE2EGE6XD+fpe3P/4LSXKTzPBpP9fKy4/33w9A+NIIh/VvTv0Os++KqhtGU6sQod8/ePCsIWGWrPDGnnc4iloFIQTaL2bqByQecld5rK1iRvhBhFknxFZqvg5htt11P5wZ/rUuDsYH+JKrfQUhBN7qzQKINC93VT/C7EAmPGYfg9ihACiV8oQHv32b9pwQ+sa48fJ79t1gxHUbEGFD9plXKXwhCIE3Ljm7X7e7RpB4yDGQvQsUC5+BcOVyDoTg3tPZ8QfTYRBrechVO8xw6gkHxVeBguFnhWC3GbO7Ro211nVbzFIDcBnedrCjOzd8lD5VVHvMUgIIp8ypB5np8PsPczB2Z97hA2fPOafA94xIcl3RbTJLBUDF8CUDoGr4kgBQObznAFQP7ykAP4T3DIBfwnsCwE/hpQPwW3ipAPwYXhoAv4aXBQBi1pMJbx18oLl94NQn8h5sFgoAcq4hbmzl5bdvqn/mZQGAhK2euTY4HwhKhJcCANM2u/zbRxq5GS0MYcEve5kAEKbXRNknGxJ8YmgDv/DptjkhKHPmpQAIp4KIsD9E2b0dO/nkDxvSzgdBufDFAkAkGbPL9l7cmgEgfH4GhOCRD9W57GUBgJgeFeVE0F8GNuUAED5x8sX7N08khQ9FrB3i9lv0lpxZFAB2R5R7tml3OrAYAwZvbeYffPQS38KaeGUd9SS82IBBmP6dnndg2r4gAJbW7nsMETohytUnmrnVsZNXNbTk2zb7R+zgGjixBsjQurghbSnfdAlg6q2NOfcKf0SEngnVsri0nWOVAEDCunICY/YnIvQqxKw1vV3upVQAgKoTKyCmFyBm76Na+ry4JYJSSQUACyoNIK6vAKS7ANNjANKDIJNwF6hpedzxhLYP+EENr0PH/KNTxog6OTVXp4eBDyQmWlLeTLMFMRuY7k8/+eG1U0joMRtAkCSeLv4PcXZZS0xnK+taHwaKCpIkQ5j9N91lb8v513AqCDH9xrlagwg9J968UsWIsOMQ037HifrLrKXPyAEAAFhWs+dRRNiXBZ7wlDAk7FcYsV4AHqgMYboLEfaFWLywn/fVMP1dLMCIgXo5YY94EV5LS0tLSwssTv0PcZgfZHzOGbkAAAAASUVORK5CYII="
+              /></a>
+            </td>
+            <td>
+              <a
+                *ngIf="authService.isAdmin()"
+                class="btn btn-danger"
+                (click)="deletea(airline.idAirline)"
+                >Delete</a
+              >
+            </td>
+            <td>
+              <!-- Button trigger modal -->
+              <button
+                type="button"
+                class="btn btn-primary"
+                data-bs-toggle="modal"
+                data-bs-target="#staticBackdrop"
+              >
+                Details
+              </button>
+
+              <!-- Modal -->
+              <div
+                class="modal fade"
+                id="staticBackdrop"
+                data-bs-backdrop="static"
+                data-bs-keyboard="false"
+                tabindex="-1"
+                aria-labelledby="staticBackdropLabel"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="staticBackdropLabel">
+                        Details
+                        <img
+                          src="https://img.icons8.com/sf-ultralight/25/null/airport.png"
+                        />
+                      </h1>
+                      <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                      ></button>
+                    </div>
+                    <ng-container *ngFor="let airline of airlines">
+                      <div *ngIf="airline.nameAirline === 'QatarAirLine'" class="modal-body">QatarAirLine</div>
+                    </ng-container>
+
+                    <div class="modal-footer">
+                      <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal"
+                      >
+                        Close
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

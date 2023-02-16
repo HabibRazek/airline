@@ -1,0 +1,69 @@
+<div class="container">
+  <div class="card shadow mb-4">
+    <div class="card-body">
+      <div *ngIf="authService.isAdmin()">
+        <a routerLink="/add-flights">
+          <img src="https://img.icons8.com/fluency/48/000000/plus-2-math.png" />
+        </a>
+      </div>
+
+      <form class="form-inline">
+        <div class="form-group mx-sm-3 mb-2 mt-2">
+          <label>type the destination flight</label>
+          <input
+            class="form-control"
+            #searchTerm
+            (keyup)="onKeyUp(searchTerm.value)"
+          />
+        </div>
+      </form>
+      <table class="table table-striped">
+        <tr>
+          <th>Id</th>
+          <th>Code</th>
+          <th>Depart</th>
+          <th>Destination</th>
+          <th>Date</th>
+          <th>number of seats</th>
+          <th>airline</th>
+        </tr>
+        <tbody *ngFor="let flight of flights">
+          <tr>
+            <td>{{ flight.idFlight }}</td>
+            <td>{{ flight.codeFlight }}</td>
+            <td>{{ flight.departFlight }}</td>
+            <td>{{ flight.destinationFlight }}</td>
+            <td>{{ flight.dateFlight | date : "dd/MM/yyyy" }}</td>
+            <td>{{ flight.numberofseatsFlight }}</td>
+            <td>{{ flight.airline.nameAirline }}</td>
+
+            <td>
+              <a
+                *ngIf="authService.isAdmin()"
+                [routerLink]="['/updateflight', flight.idFlight]"
+                ><img
+                  height="38px"
+                  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAACXBIWXMAAAsTAAALEwEAmpwYAAAEQ0lEQVR4nO2abWgURwCGJ/FuZ26Nph9Q2h/S4FdBqFAuuZlc0x5Wg/GHtjWe2ETJ3cx6NbEllDY0LajVUAnBUltU1FIVKUJMQVEs+MMWSkEIGFL6q2laCkFi0kI/oNCWJlPmkr3bi7lc3Ju9zIZ54YXl7uZm3md3ZmdnFgAtLS0tLS0t/+lQOSK0GRF6C2I2LiyOxWfiO7CotX73UoTpdUQYn930Boi1VYBFG57Qr+ywcGM7D7KTaYvjzOeEfr34IKzPDW/s6uZln/3MwefjaYtj45Ue59VwE8TjS+Q2IpwyIW6pgtXJlfMxCKcqPQnf2MVB72gmfMa9o9xoykKAEWt/8ZVH6TJE2EGE6XD+fpe3P/4LSXKTzPBpP9fKy4/33w9A+NIIh/VvTv0Os++KqhtGU6sQod8/ePCsIWGWrPDGnnc4iloFIQTaL2bqByQecld5rK1iRvhBhFknxFZqvg5htt11P5wZ/rUuDsYH+JKrfQUhBN7qzQKINC93VT/C7EAmPGYfg9ihACiV8oQHv32b9pwQ+sa48fJ79t1gxHUbEGFD9plXKXwhCIE3Ljm7X7e7RpB4yDGQvQsUC5+BcOVyDoTg3tPZ8QfTYRBrechVO8xw6gkHxVeBguFnhWC3GbO7Ro211nVbzFIDcBnedrCjOzd8lD5VVHvMUgIIp8ypB5np8PsPczB2Z97hA2fPOafA94xIcl3RbTJLBUDF8CUDoGr4kgBQObznAFQP7ykAP4T3DIBfwnsCwE/hpQPwW3ipAPwYXhoAv4aXBQBi1pMJbx18oLl94NQn8h5sFgoAcq4hbmzl5bdvqn/mZQGAhK2euTY4HwhKhJcCANM2u/zbRxq5GS0MYcEve5kAEKbXRNknGxJ8YmgDv/DptjkhKHPmpQAIp4KIsD9E2b0dO/nkDxvSzgdBufDFAkAkGbPL9l7cmgEgfH4GhOCRD9W57GUBgJgeFeVE0F8GNuUAED5x8sX7N08khQ9FrB3i9lv0lpxZFAB2R5R7tml3OrAYAwZvbeYffPQS38KaeGUd9SS82IBBmP6dnndg2r4gAJbW7nsMETohytUnmrnVsZNXNbTk2zb7R+zgGjixBsjQurghbSnfdAlg6q2NOfcKf0SEngnVsri0nWOVAEDCunICY/YnIvQqxKw1vV3upVQAgKoTKyCmFyBm76Na+ry4JYJSSQUACyoNIK6vAKS7ANNjANKDIJNwF6hpedzxhLYP+EENr0PH/KNTxog6OTVXp4eBDyQmWlLeTLMFMRuY7k8/+eG1U0joMRtAkCSeLv4PcXZZS0xnK+taHwaKCpIkQ5j9N91lb8v513AqCDH9xrlagwg9J968UsWIsOMQ037HifrLrKXPyAEAAFhWs+dRRNiXBZ7wlDAk7FcYsV4AHqgMYboLEfaFWLywn/fVMP1dLMCIgXo5YY94EV5LS0tLSwssTv0PcZgfZHzOGbkAAAAASUVORK5CYII="
+              /></a>
+            </td>
+            <td>
+              <a
+                *ngIf="authService.isAdmin()"
+                (click)="deletef(flight.idFlight)"
+                ><img
+                  src="https://img.icons8.com/fluency/38/null/delete-forever.png"
+              /></a>
+            </td>
+            <td>
+              <a
+                class="btn btn-dark"
+                [routerLink]="['/ticketavailable', flight.idFlight]"
+                >choose</a
+              >
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,112 @@
+<!-- <div class="container mt-5">
+  <div class="row justify-content-md-center">
+    <div class="col-md-4">
+      <div class="row justify-content-md-center">
+        <div class="col-md-4">
+          <div class="alert alert-danger" *ngIf="erreur == 1">
+            <strong>login ou mot de passe erronés..</strong>
+          </div>
+          <form>
+            <div class="form-group">
+              <label> User Name:</label>
+              <input
+                type="text"
+                name="username"
+                class="form-control"
+                [(ngModel)]="user.username"
+              />
+            </div>
+            <div class="form-group">
+              <label>Password :</label>
+              <input
+                type="password"
+                name="password"
+                [(ngModel)]="user.password"
+                class="form-control"
+              />
+            </div>
+            <div class="row justify-content-md-center">
+              <button
+                type="button"
+                (click)="onLoggedin()"
+                class="btn btn-success"
+              >
+                Connexion
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<link
+  href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
+  rel="stylesheet"
+/>
+<br />
+<br />
+<div style="height: 120px"></div>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card-group mb-0">
+        <div class="card p-4">
+          <div class="card-body">
+            <h1>Login</h1>
+            <p class="text-muted">Sign In to your account</p>
+            <div class="alert alert-danger" *ngIf="erreur == 1">
+              <strong>login ou mot de passe erronés..</strong>
+            </div>
+            <div class="input-group mb-3">
+
+              <span class="input-group-addon"><i class="fa fa-user"></i></span>
+              <input
+                type="text"
+                name="username"
+                class="form-control"
+                [(ngModel)]="user.username"
+                placeholder="Username"
+              />
+            </div>
+            <div class="input-group mb-4">
+              <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+              <input
+                type="password"
+                name="password"
+                [(ngModel)]="user.password"
+                class="form-control"
+                placeholder="Password"
+              />
+            </div>
+            <div class="row">
+              <div class="col-6">
+                <button
+                  type="button"
+                  (click)="onLoggedin()"
+                  class="btn btn-primary"
+                >
+                  Login
+                </button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div
+          class="card text-white bg-primary py-5 d-md-down-none"
+          style="width: 44%"
+        >
+          <div class="card-body text-center">
+            <div>
+              <img src="https://img.icons8.com/color/150/null/airplane-front-view.png"/>
+              <br>
+              Airline Reservation System
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
